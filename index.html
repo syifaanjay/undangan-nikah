@@ -1,36 +1,155 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <title>Undangan Pernikahan</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Undangan Pernikahan</title>
+
+<style>
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: Georgia, serif;
+  scroll-behavior: smooth;
+}
+
+.page {
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+}
+
+.overlay {
+  background: rgba(0,0,0,0.45);
+  padding: 30px;
+  border-radius: 16px;
+  max-width: 90%;
+}
+
+button {
+  padding: 12px 26px;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#cover {
+  background-image: url("cover.png");
+}
+
+#akad {
+  background-image: url("akad.png");
+}
+
+#resepsi {
+  background-image: url("resepsi.png");
+}
+
+#content {
+  background: #faf7f2;
+  color: #4a4a4a;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+a {
+  display: inline-block;
+  margin: 10px;
+  padding: 10px 18px;
+  background: #9caf88;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 20px;
+}
+</style>
 </head>
+
 <body>
 
 <!-- COVER -->
-<section class="page cover"></section>
-<section class="page akad"></section>
-<section class="page resepsi"></section>
+<section id="cover" class="page">
+  <div class="overlay">
+    <h1>S & N</h1>
+    <p>Undangan Pernikahan</p>
+    <button id="openBtn">Buka Undangan</button>
+  </div>
+</section>
 
 <!-- MUSIK -->
 <audio id="bgMusic" loop>
   <source src="musik.mp3" type="audio/mpeg">
-  
 </audio>
-<button onclick="bgMusic.pause()">⏸</button>
-<button onclick="bgMusic.play()">▶️</button>
-  
-<!-- ISI UNDANGAN -->
-<section id="content">
-  <h2>Menuju Hari Bahagia</h2>
-<div id="countdown"></div>
-  <h2>Akad Nikah</h2>
-  <p>Ahad, 30 Maret 2026</p>
 
-  <h2>Resepsi</h2>
-  <p>Pringsari, Sambengsari</p>
+<!-- AKAD -->
+<section id="akad" class="page">
+  <div class="overlay">
+    <h2>Akad Nikah</h2>
+    <p>Ahad, 30 Maret 2026<br>08.00 WIB</p>
+  </div>
 </section>
 
-<script src="script.js"></script>
+<!-- RESEPSI -->
+<section id="resepsi" class="page">
+  <div class="overlay">
+    <h2>Resepsi</h2>
+    <p>Pringsari, Sambengsari</p>
+  </div>
+</section>
+
+<!-- KONTEN -->
+<section id="content">
+  <h2>Menuju Hari Bahagia</h2>
+  <div id="countdown"></div>
+
+  <br>
+
+  <a href="https://maps.google.com/?q=Pringsari Sambengsari" target="_blank">
+    📍 Lihat Lokasi
+  </a>
+
+  <a href="https://wa.me/6281234567890" target="_blank">
+    💬 Konfirmasi WA
+  </a>
+
+  <br><br>
+  <button onclick="bgMusic.pause()">⏸</button>
+  <button onclick="bgMusic.play()">▶️</button>
+</section>
+
+<script>
+const btn = document.getElementById("openBtn");
+const music = document.getElementById("bgMusic");
+const akad = document.getElementById("akad");
+
+btn.addEventListener("click", () => {
+  music.play();
+  akad.scrollIntoView({ behavior: "smooth" });
+});
+
+// COUNTDOWN
+const targetDate = new Date("2026-03-30T08:00:00").getTime();
+
+setInterval(() => {
+  const now = new Date().getTime();
+  const distance = targetDate - now;
+
+  if (distance < 0) return;
+
+  const days = Math.floor(distance / (1000*60*60*24));
+  const hours = Math.floor((distance / (1000*60*60)) % 24);
+  const minutes = Math.floor((distance / (1000*60)) % 60);
+  const seconds = Math.floor((distance / 1000) % 60);
+
+  document.getElementById("countdown").innerHTML =
+    `${days} Hari ${hours} Jam ${minutes} Menit ${seconds} Detik`;
+}, 1000);
+</script>
+
 </body>
 </html>
