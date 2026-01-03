@@ -1,3 +1,13 @@
+.page {
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+}
+
+.cover { background-image: url("cover.png"); }
+.akad { background-image: url("akad.png"); }
+.resepsi { background-image: url("resepsi.png"); }
+
 body {
   margin: 0;
   font-family: Georgia, serif;
