@@ -1,0 +1,32 @@
+body {
+  margin: 0;
+  font-family: Georgia, serif;
+  background: #faf7f2;
+}
+
+section {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+#cover {
+  height: 100vh;
+  background: #9caf88;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+button {
+  padding: 12px 24px;
+  font-size: 16px;
+  border: none;
+  border-radius: 20px;
+  background: white;
+  cursor: pointer;
+}
+
+#content {
+  min-height: 100vh;
+}
